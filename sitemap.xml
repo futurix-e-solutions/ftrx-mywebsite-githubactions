@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core Pages -->
+  <url>
+    <loc>https://ftrxsoftsolutions.in/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+    <lastmod>2025-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://ftrxsoftsolutions.in/about</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://ftrxsoftsolutions.in/services</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+    <lastmod>2025-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://ftrxsoftsolutions.in/portfolio</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://ftrxsoftsolutions.in/blog</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <lastmod>2025-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://ftrxsoftsolutions.in/contact</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-09-05</lastmod>
+  </url>
+
+  <!-- Service Specific -->
+  <url><loc>https://ftrxsoftsolutions.in/web-development</loc><priority>0.9</priority><changefreq>monthly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/mobile-app-development</loc><priority>0.9</priority><changefreq>monthly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/ui-ux-design</loc><priority>0.9</priority><changefreq>monthly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/digital-marketing</loc><priority>0.9</priority><changefreq>monthly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/other-services</loc><priority>0.8</priority><changefreq>monthly</changefreq><lastmod>2025-09-05</lastmod></url>
+
+  <!-- SEO Optimized Routes -->
+  <url><loc>https://ftrxsoftsolutions.in/best-software-company-in-hyderabad</loc><priority>1.0</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/nearby-software-company-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/most-famous-software-company-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/top-software-company-in-hyderabad</loc><priority>1.0</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/leading-software-solutions-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/software-development-company-hyderabad</loc><priority>1.0</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/custom-software-development-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/professional-software-developers-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/it-company-in-hyderabad</loc><priority>1.0</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/software-service-provider-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/top-it-company-in-hyderabad</loc><priority>1.0</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/best-web-development-company-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/best-app-development-company-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/software-company-near-me-hyderabad</loc><priority>0.8</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+  <url><loc>https://ftrxsoftsolutions.in/reputed-software-company-hyderabad</loc><priority>0.9</priority><changefreq>weekly</changefreq><lastmod>2025-09-05</lastmod></url>
+
+</urlset>
