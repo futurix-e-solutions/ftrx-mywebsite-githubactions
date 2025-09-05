@@ -1,54 +1,46 @@
-name: Angular CI/CD with PM2
+name: Deploy Angular SSR to EC2
 
 on:
   push:
-    branches: [ "master" ]   # trigger only when pushing to master
+    branches:
+      - master
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: ✅ Checkout code
+        uses: actions/checkout@v4
 
-      - name: Copy Project to EC2
+      - name: 🟢 Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: 🏗 Build Angular SSR
+        run: npm run build:ssr
+
+      - name: 📤 Copy build to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "."
-          target: "~/angular-app"
+          password: ${{ secrets.EC2_PASSWORD }}
+          source: "dist/ package.json package-lock.json deploy.sh"
+          target: "/home/ec2-user/myapp"
 
-      - name: SSH into EC2 and Deploy
-        uses: appleboy/ssh-action@v0.1.10
+      - name: 🚀 Run deploy script on EC2
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
+          password: ${{ secrets.EC2_PASSWORD }}
           script: |
-            # Go to project
-            cd ~/angular-app
-
-            # Install Node & Angular if not already installed
-            if ! command -v node &> /dev/null; then
-              curl -sL https://rpm.nodesource.com/setup_18.x | sudo bash -
-              sudo yum install -y nodejs gcc-c++ make
-              sudo npm install -g @angular/cli pm2
-            fi
-
-            # Install dependencies
-            npm install
-
-            # Build Angular app
-            npm run build --prod
-
-            # Serve Angular app with PM2 (http-server)
-            sudo npm install -g http-server pm2
-            pm2 delete angular-app || true
-            pm2 start "http-server -p 8080 -c-1 dist/<my-website>" --name angular-app
-
-            # Save PM2 process list so it restarts on reboot
-            pm2 save
-            pm2 startup systemd -u $USER --hp $HOME
+            cd /home/ec2-user/myapp
+            chmod +x deploy.sh
+            ./deploy.sh
