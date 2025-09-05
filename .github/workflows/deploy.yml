@@ -1,4 +1,4 @@
-name: Deploy Angular SSR to EC2
+name: Deploy Angular SSR on EC2
 
 on:
   push:
@@ -6,41 +6,25 @@ on:
       - master
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
+  deploy:
+    runs-on: self-hosted   # THIS IS THE EC2 RUNNER
     steps:
-      - name: ✅ Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js 22
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: 🏗 Build Angular SSR
+      - name: Build Angular SSR
         run: npm run build:ssr
 
-      - name: 📤 Copy build to EC2
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          password: ${{ secrets.EC2_PASSWORD }}
-          source: "dist/ package.json package-lock.json deploy.sh"
-          target: "/home/ec2-user/myapp"
-
-      - name: 🚀 Run deploy script on EC2
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          password: ${{ secrets.EC2_PASSWORD }}
-          script: |
-            cd /home/ec2-user/myapp
-            chmod +x deploy.sh
-            ./deploy.sh
+      - name: Run deploy script
+        run: |
+          cd /home/ubuntu/myapp
+          chmod +x deploy.sh
+          ./deploy.sh
