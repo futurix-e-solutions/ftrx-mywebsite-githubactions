@@ -46,7 +46,7 @@ import { RouterModule } from '@angular/router';
             <ul class="list-unstyled">
               <li class="text-light mb-2"><i class="fas fa-phone me-2"></i> +91 93916 90216</li>
               <li class="text-light mb-2"><i class="fas fa-envelope me-2"></i> info&#64;ftrxsoftsolutions.in</li>
-              <li class="text-light mb-2"><i class="fas fa-map-marker-alt me-2"></i> Madhapur, Hyderabad</li>
+              <li class="text-light mb-2"><i class="fas fa-map-marker-alt me-2"></i> JNTU, Hyderabad</li>
             </ul>
           </div>
         </div>
