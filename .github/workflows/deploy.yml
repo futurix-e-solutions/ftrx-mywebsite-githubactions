@@ -6,36 +6,31 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted     # 👈 runs directly on EC2 runner
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Copy source code to EC2
-        uses: appleboy/scp-action@v0.1.7
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-       
-          source: "."   # 👈 copy whole project
-          target: "/var/www/your-app"
+          node-version: 22
 
-      - name: Deploy on EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-       
-          script: |
-            cd /var/www/your-app
-            npm install --legacy-peer-deps
-            npm run build:ssr
-            pm2 delete all || true
-            pm2 start dist/my-website/server/main.server.mjs --name angular-ssr
-            pm2 save
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build Angular SSR
+        run: npm run build:ssr
+
+      - name: Deploy with PM2
+        run: |
+          pm2 stop angular-ssr || true
+          pm2 start dist/my-website/server/main.server.mjs --name angular-ssr -- --port 4000
+          pm2 save
 
       - name: Copy SEO files
         run: |
-          sudo cp dist/my-website/browser/robots.txt /var/www/html/
-          sudo cp dist/my-website/browser/sitemap.xml /var/www/html/
+          sudo cp dist/my-website/browser/robots.txt /var/www/html/ || true
+          sudo cp dist/my-website/browser/sitemap.xml /var/www/html/ || true
+          sudo cp dist/my-website/browser/error.html /var/www/html/ || true
