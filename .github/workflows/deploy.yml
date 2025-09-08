@@ -34,3 +34,8 @@ jobs:
             pm2 delete all || true
             pm2 start dist/my-website/server/main.server.mjs --name angular-ssr
             pm2 save
+
+      - name: Copy SEO files
+        run: |
+          sudo cp dist/my-website/browser/robots.txt /var/www/html/
+          sudo cp dist/my-website/browser/sitemap.xml /var/www/html/
