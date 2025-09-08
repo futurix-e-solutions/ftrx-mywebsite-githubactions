@@ -32,5 +32,5 @@ jobs:
             npm install --legacy-peer-deps
             npm run build:ssr
             pm2 delete all || true
-            pm2 start dist/your-app/server/main.js --name angular-ssr
+            pm2 start dist/my-website/server/main.server.mjs --name angular-ssr
             pm2 save
