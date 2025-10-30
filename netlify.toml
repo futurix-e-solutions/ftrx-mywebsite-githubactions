@@ -14,7 +14,6 @@
 [build.environment]
   # Node version
   NODE_VERSION = "18"
-
   # NPM version
   NPM_VERSION = "9"
 
@@ -38,7 +37,7 @@
   status = 301
   force = true
 
-# www to non-www redirect (optional - choose one)
+# www to non-www redirect
 [[redirects]]
   from = "https://www.ftrxsoftsolutions.in/*"
   to = "https://ftrxsoftsolutions.in/:splat"
@@ -49,17 +48,12 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    # Security Headers
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-
-    # Content Security Policy (adjust as needed)
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; connect-src 'self' https://www.google-analytics.com; frame-src 'self' https://www.google.com;"
-
-    # Cache Control
     Cache-Control = "public, max-age=0, must-revalidate"
 
 # Cache static assets aggressively
@@ -101,7 +95,6 @@
   package = "@netlify/plugin-lighthouse"
 
   [plugins.inputs]
-    # Run Lighthouse audits on deployment
     output_path = "reports/lighthouse.html"
 
 # Context-specific configurations
