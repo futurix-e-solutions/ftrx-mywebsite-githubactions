@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { COMPANY_INFO, CONTACT_INFO, GOOGLE_MAPS_EMBED } from '../../constants/company.constants';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -24,7 +26,7 @@ import { RouterModule } from '@angular/router';
     <section class="py-5">
       <div class="container">
         <div class="row g-4 mb-5">
-          <div class="col-lg-4" *ngFor="let info of contactInfo">
+          <div class="col-lg-4" *ngFor="let info of contactInfoDisplay">
             <div class="card border-0 shadow-sm h-100 text-center">
               <div class="card-body p-4">
                 <div class="contact-icon mb-3">
@@ -144,7 +146,7 @@ import { RouterModule } from '@angular/router';
           <div class="col-lg-4">
             <div class="card border-0 shadow-sm mb-4">
               <div class="card-body p-4">
-                <h4 class="fw-bold mb-3">Why Choose FTRX?</h4>
+                <h4 class="fw-bold mb-3">Why Choose {{ companyInfo.name }}?</h4>
                 <div class="mb-3" *ngFor="let benefit of whyChooseUs">
                   <div class="d-flex align-items-start">
                     <i [class]="benefit.icon" class="text-primary me-3 mt-1"></i>
@@ -171,10 +173,10 @@ import { RouterModule } from '@angular/router';
                 
                 <div class="text-center">
                   <p class="text-muted mb-2">Need immediate assistance?</p>
-                  <a href="tel:+919391690216" class="btn btn-success btn-sm me-2">
+                  <a [href]="contactInfo.phone.dialLink" class="btn btn-success btn-sm me-2">
                     <i class="fas fa-phone"></i> Call Now
                   </a>
-                  <a href="https://wa.me/919391690216" target="_blank" class="btn btn-success btn-sm">
+                  <a [href]="contactInfo.whatsapp.link" target="_blank" class="btn btn-success btn-sm">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                   </a>
                 </div>
@@ -189,8 +191,8 @@ import { RouterModule } from '@angular/router';
     <section class="py-0">
       <div class="container-fluid p-0">
         <div class="embed-responsive" style="height: 400px;">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30444.20649122513!2d78.36831!3d17.4449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93dc8c5d69df%3A0x19688beb557fa0ee!2sMadhapur%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1710515123456!5m2!1sen!2sin"
+          <iframe
+            [src]="googleMapsEmbed"
             width="100%" 
             height="400" 
             style="border:0;" 
@@ -206,12 +208,12 @@ import { RouterModule } from '@angular/router';
     <section class="py-5 bg-primary text-white">
       <div class="container text-center">
         <h2 class="display-5 fw-bold mb-4">Let's Build Something Amazing Together</h2>
-        <p class="lead mb-4">Join 100+ successful projects and transform your business with FTRX</p>
+        <p class="lead mb-4">Join 100+ successful projects and transform your business with {{ companyInfo.name }}</p>
         <div class="d-flex justify-content-center gap-3 flex-wrap">
-          <a href="tel:+919391690216" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
-            <i class="fas fa-phone me-2"></i> Call: +91 93916 90216
+          <a [href]="contactInfo.phone.dialLink" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+            <i class="fas fa-phone me-2"></i> Call: {{ contactInfo.phone.display }}
           </a>
-          <a href="mailto:info@ftrxsoftsolutions.in" class="btn btn-outline-light btn-lg px-5 py-3">
+          <a [href]="'mailto:' + contactInfo.email.info" class="btn btn-outline-light btn-lg px-5 py-3">
             <i class="fas fa-envelope me-2"></i> Email Us
           </a>
         </div>
@@ -243,7 +245,18 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
+  companyInfo = COMPANY_INFO;
+  contactInfo = CONTACT_INFO;
+  googleMapsEmbed = GOOGLE_MAPS_EMBED;
+
+  constructor(private seoService: SeoService) {}
+
+  ngOnInit() {
+    // Update SEO for contact page
+    this.seoService.updateContactPage();
+  }
+
   formData = {
     name: '',
     email: '',
@@ -257,25 +270,25 @@ export class ContactComponent {
   isSubmitting = false;
   showSuccessMessage = false;
 
-  contactInfo = [
+  contactInfoDisplay = [
     {
       icon: 'fas fa-phone',
       title: 'Call Us',
-      details: ['+91 93916 90216', 'Available 10 AM - 7 PM'],
-      link: 'tel:+919391690216',
+      details: [CONTACT_INFO.phone.display, 'Available 10 AM - 7 PM'],
+      link: CONTACT_INFO.phone.dialLink,
       linkText: 'Call Now'
     },
     {
       icon: 'fas fa-envelope',
       title: 'Email Us',
-      details: ['info@ftrxsoftsolutions.in', 'sales@ftrxsoftsolutions.in'],
-      link: 'mailto:info@ftrxsoftsolutions.in',
+      details: [CONTACT_INFO.email.info, CONTACT_INFO.email.sales],
+      link: `mailto:${CONTACT_INFO.email.info}`,
       linkText: 'Send Email'
     },
     {
       icon: 'fas fa-map-marker-alt',
       title: 'Visit Us',
-      details: ['FTRX Soft Solutions', 'Madhapur, Hyderabad', 'Telangana - 500081'],
+      details: [COMPANY_INFO.name, CONTACT_INFO.address.street + ', ' + CONTACT_INFO.address.locality, CONTACT_INFO.address.region + ' - ' + CONTACT_INFO.address.postalCode],
       link: '#',
       linkText: 'Get Directions'
     }

@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { COMPANY_INFO, CONTACT_INFO, COMPANY_STATS } from '../../constants/company.constants';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -57,15 +59,15 @@ import { RouterModule } from '@angular/router';
             <div class="animate-fade-in-left delay-600">
               <div class="row text-center mt-5">
                 <div class="col-4">
-                  <div class="stat-number">5+</div>
+                  <div class="stat-number">{{ companyStats.projectsDelivered }}</div>
                   <p class="text-white-50">Projects Delivered</p>
                 </div>
                 <div class="col-4">
-                  <div class="stat-number">5+</div>
+                  <div class="stat-number">{{ companyStats.clientsSatisfied }}</div>
                   <p class="text-white-50">Happy Clients</p>
                 </div>
                 <div class="col-4">
-                  <div class="stat-number">24/7</div>
+                  <div class="stat-number">{{ companyStats.support }}</div>
                   <p class="text-white-50">Support</p>
                 </div>
               </div>
@@ -400,8 +402,8 @@ import { RouterModule } from '@angular/router';
             Ready to Transform Your Business?
           </h2>
           <p class="lead mb-5 mx-auto" style="max-width: 700px;">
-            Join 100+ successful businesses who have transformed their digital
-            presence with FTRX. Let's discuss your project and create something
+            Join {{ companyStats.happyClients }} successful businesses who have transformed their digital
+            presence with {{ companyInfo.name }}. Let's discuss your project and create something
             amazing together.
           </p>
 
@@ -416,7 +418,7 @@ import { RouterModule } from '@angular/router';
                     <i class="fas fa-phone"></i>
                   </div>
                   <h5 class="fw-bold mb-2">Call Us Now</h5>
-                  <p class="mb-0">+91 93916 90216</p>
+                  <p class="mb-0">{{ contactInfo.phone.display }}</p>
                 </div>
               </div>
             </div>
@@ -430,7 +432,7 @@ import { RouterModule } from '@angular/router';
                     <i class="fas fa-envelope"></i>
                   </div>
                   <h5 class="fw-bold mb-2">Email Us</h5>
-                  <p class="mb-0">info&#64;ftrxsoftsolutions.in</p>
+                  <p class="mb-0">{{ contactInfo.email.info }}</p>
                 </div>
               </div>
             </div>
@@ -444,7 +446,7 @@ import { RouterModule } from '@angular/router';
                     <i class="fas fa-map-marker-alt"></i>
                   </div>
                   <h5 class="fw-bold mb-2">Visit Us</h5>
-                  <p class="mb-0">Hyderabad, India</p>
+                  <p class="mb-0">{{ contactInfo.address.locality }}, {{ contactInfo.address.countryName }}</p>
                 </div>
               </div>
             </div>
@@ -458,9 +460,9 @@ import { RouterModule } from '@angular/router';
               <i class="fas fa-calendar-alt me-2"></i>
               Schedule Free Consultation
             </a>
-            <a href="tel:+919391690216" class="btn btn-outline-light btn-xl">
+            <a [href]="contactInfo.phone.dialLink" class="btn btn-outline-light btn-xl">
               <i class="fas fa-phone me-2"></i>
-              Call: +91 93916 90216
+              Call: {{ contactInfo.phone.display }}
             </a>
           </div>
         </div>
@@ -512,12 +514,21 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  companyInfo = COMPANY_INFO;
+  contactInfo = CONTACT_INFO;
+  companyStats = COMPANY_STATS;
   isBrowser: any;
-  ngOnInit() {
-    // Component initialization
-  }
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private seoService: SeoService
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  ngOnInit() {
+    // Update SEO for home page
+    this.seoService.updateHomePage();
   }
 
   ngAfterViewInit() {

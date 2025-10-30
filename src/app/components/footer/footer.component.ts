@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import {
+  COMPANY_INFO,
+  CONTACT_INFO,
+  SOCIAL_MEDIA,
+  QUICK_LINKS,
+  SERVICES_LIST,
+  COPYRIGHT,
+  STRUCTURED_DATA,
+  LEGAL_LINKS
+} from '../../constants/company.constants';
 
 @Component({
   selector: 'app-footer',
@@ -11,97 +21,64 @@ import { RouterModule } from '@angular/router';
       <div class="container">
         <div class="row g-4">
           <div class="col-lg-4 col-md-6">
-            <h5 class="fw-bold mb-3">FTRX Soft Solutions</h5>
-            <p class="text-light mb-3">India's Best Startup IT Company 2025. We deliver cutting-edge web and mobile solutions to transform your business.</p>
+            <h5 class="fw-bold mb-3">{{ companyInfo.name }}</h5>
+            <p class="text-light mb-3">{{ companyInfo.tagline }}. We deliver cutting-edge web and mobile solutions to transform your business.</p>
             <div class="d-flex gap-3">
-              <a target="_blank" href="https://www.facebook.com/ftrxsoftsolutions" class="text-white fs-5"><i class="fab fa-facebook"></i></a>
-              <!-- <a target="_blank" href="https://www.facebook.com/ftrxsoftsolutions" class="text-white fs-5"><i class="fab fa-twitter"></i></a> -->
-              <a target="_blank" href="https://www.linkedin.com/company/ftrx_soft_solutions" class="text-white fs-5"><i class="fab fa-linkedin"></i></a>
-              <a target="_blank" href="https://www.instagram.com/ftrx_soft_solutions" class="text-white fs-5"><i class="fab fa-instagram"></i></a>
+              <a target="_blank" [href]="socialMedia.facebook.url" class="text-white fs-5"><i [class]="socialMedia.facebook.icon"></i></a>
+              <a target="_blank" [href]="socialMedia.linkedin.url" class="text-white fs-5"><i [class]="socialMedia.linkedin.icon"></i></a>
+              <a target="_blank" [href]="socialMedia.instagram.url" class="text-white fs-5"><i [class]="socialMedia.instagram.icon"></i></a>
             </div>
           </div>
-          
+
           <div class="col-lg-2 col-md-6">
             <h6 class="fw-bold mb-3">Quick Links</h6>
             <ul class="list-unstyled">
-              <li><a routerLink="/" class="text-light text-decoration-none">Home</a></li>
-              <li><a routerLink="/about" class="text-light text-decoration-none">About</a></li>
-              <li><a routerLink="/services" class="text-light text-decoration-none">Services</a></li>
-              <li><a routerLink="/portfolio" class="text-light text-decoration-none">Portfolio</a></li>
+              <li *ngFor="let link of quickLinks.slice(0, 4)">
+                <a [routerLink]="link.path" class="text-light text-decoration-none">{{ link.label }}</a>
+              </li>
             </ul>
           </div>
-          
+
           <div class="col-lg-3 col-md-6">
             <h6 class="fw-bold mb-3">Services</h6>
             <ul class="list-unstyled">
-              <li><a href="#" class="text-light text-decoration-none">Web Development</a></li>
-              <li><a href="#" class="text-light text-decoration-none">Mobile Apps</a></li>
-              <li><a href="#" class="text-light text-decoration-none">Digital Marketing</a></li>
-              <li><a href="#" class="text-light text-decoration-none">UI/UX Design</a></li>
+              <li *ngFor="let service of servicesList.slice(0, 4)">
+                <a [routerLink]="service.path" class="text-light text-decoration-none">{{ service.label }}</a>
+              </li>
             </ul>
           </div>
-          
+
           <div class="col-lg-3 col-md-6">
             <h6 class="fw-bold mb-3">Contact Info</h6>
             <ul class="list-unstyled">
-              <li class="text-light mb-2"><i class="fas fa-phone me-2"></i> +91 93916 90216</li>
-              <li class="text-light mb-2"><i class="fas fa-envelope me-2"></i> info&#64;ftrxsoftsolutions.in</li>
-              <li class="text-light mb-2"><i class="fas fa-map-marker-alt me-2"></i> JNTU, Hyderabad</li>
+              <li class="text-light mb-2"><i class="fas fa-phone me-2"></i> {{ contactInfo.phone.display }}</li>
+              <li class="text-light mb-2"><i class="fas fa-envelope me-2"></i> {{ contactInfo.email.info }}</li>
+              <li class="text-light mb-2"><i class="fas fa-map-marker-alt me-2"></i> {{ contactInfo.address.short }}</li>
             </ul>
           </div>
         </div>
-        
+
         <hr class="my-4 text-white-50">
-        
+
         <div class="row align-items-center">
           <div class="col-md-6">
-            <p class="mb-0 text-light">&copy; 2025 FTRX Soft Solutions. All rights reserved.</p>
+            <p class="mb-0 text-light">{{ copyright.text }}</p>
           </div>
           <div class="col-md-6 text-md-end">
-            <a href="#" class="text-light text-decoration-none me-3">Privacy Policy</a>
-            <a href="#" class="text-light text-decoration-none">Terms of Service</a>
+            <a *ngFor="let link of legalLinks; let last = last"
+               [routerLink]="link.path"
+               class="text-light text-decoration-none"
+               [class.me-3]="!last">
+              {{ link.label }}
+            </a>
           </div>
         </div>
       </div>
     </footer>
-    
+
     <!-- Structured Data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "FTRX Soft Solutions",
-      "image": "https://ftrxsoftsolutions.in/assets/logo.png",
-      "@id": "https://ftrxsoftsolutions.in",
-      "url": "https://ftrxsoftsolutions.in",
-      "telephone": "+91-9391690216",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Madhapur",
-        "addressLocality": "Hyderabad",
-        "addressRegion": "Telangana",
-        "postalCode": "500081",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 17.4449,
-        "longitude": 78.3869
-      },
-      "openingHours": "Mo-Sa 10:00-19:00",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+91-9391690216",
-        "contactType": "customer service",
-        "areaServed": "IN",
-        "availableLanguage": ["English", "Hindi"]
-      },
-      "sameAs": [
-        "https://www.facebook.com/ftrxsoftsolutions",
-        "https://www.instagram.com/ftrx_soft_solutions",
-        "https://www.linkedin.com/company/ftrx_soft_solutions"
-      ]
-    }
+    {{ structuredDataJson }}
     </script>
   `,
   styles: [`
@@ -111,4 +88,13 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class FooterComponent { }
+export class FooterComponent {
+  companyInfo = COMPANY_INFO;
+  contactInfo = CONTACT_INFO;
+  socialMedia = SOCIAL_MEDIA;
+  quickLinks = QUICK_LINKS;
+  servicesList = SERVICES_LIST;
+  copyright = COPYRIGHT;
+  legalLinks = LEGAL_LINKS;
+  structuredDataJson = JSON.stringify(STRUCTURED_DATA, null, 2);
+}

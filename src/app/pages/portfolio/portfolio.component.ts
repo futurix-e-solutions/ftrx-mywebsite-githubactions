@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -276,9 +277,16 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class PortfolioComponent {
+export class PortfolioComponent implements OnInit {
   activeFilter = 'all';
   selectedProject: any = null;
+
+  constructor(private seoService: SeoService) {}
+
+  ngOnInit() {
+    // Update SEO for portfolio page
+    this.seoService.updatePortfolioPage();
+  }
 
   projects = [
     {

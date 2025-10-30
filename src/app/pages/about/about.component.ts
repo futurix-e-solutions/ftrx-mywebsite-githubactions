@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { COMPANY_INFO, TEAM_MEMBERS, AWARDS, COMPANY_STATS } from '../../constants/company.constants';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-about',
@@ -20,16 +22,14 @@ import { RouterModule } from '@angular/router';
           <div class="col-lg-8">
             <div class="animate-fade-in-left">
               <span class="badge bg-warning text-dark fs-6 mb-3"
-                >About FTRX</span
+                >About {{ companyInfo.name }}</span
               >
               <h1 class="display-3 fw-bold mb-4 text-white">
                 AI Digital <span class="text-warning">Innovation</span> Since
-                2025
+                {{ companyInfo.foundedYear }}
               </h1>
               <p class="lead fs-4 mb-4">
-                We're not just another IT company. We're digital transformation
-                catalysts, turning ambitious ideas into market-leading solutions
-                that drive real business growth.
+                {{ companyInfo.description }}
               </p>
             </div>
           </div>
@@ -48,8 +48,7 @@ import { RouterModule } from '@angular/router';
                 From Vision to <span class="text-gradient">Reality</span>
               </h2>
               <p class="lead text-muted mb-4">
-                Founded in 2023 in the heart of Hyderabad's tech hub, FTRX Soft
-                Solutions began with a simple yet powerful vision: to
+                Founded in {{ companyInfo.foundedYear }} in the heart of Hyderabad's tech hub, {{ companyInfo.name }} began with a simple yet powerful vision: to
                 democratize cutting-edge technology for businesses of all sizes.
               </p>
               <p class="mb-4">
@@ -77,7 +76,7 @@ import { RouterModule } from '@angular/router';
                     </div>
                     <div>
                       <h6 class="fw-bold mb-0">Founded</h6>
-                      <small class="text-muted">2025</small>
+                      <small class="text-muted">{{ companyInfo.foundedYear }}</small>
                     </div>
                   </div>
                 </div>
@@ -117,7 +116,7 @@ import { RouterModule } from '@angular/router';
                           <i class="fas fa-trophy"></i>
                         </div>
                         <div>
-                          <h6 class="mb-0 fw-bold">3+ Projects</h6>
+                          <h6 class="mb-0 fw-bold">{{ companyStats.projectsDelivered }} Projects</h6>
                           <small class="opacity-75"
                             >Successfully Delivered</small
                           >
@@ -326,7 +325,7 @@ import { RouterModule } from '@angular/router';
         <div class="row g-4">
           <div
             class="col-lg-3 col-md-6"
-            *ngFor="let stat of companyStats; let i = index"
+            *ngFor="let stat of statsDisplay; let i = index"
           >
             <div
               class="text-center animate-scale-in"
@@ -449,8 +448,11 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class AboutComponent implements OnInit {
+  constructor(private seoService: SeoService) {}
+
   ngOnInit() {
-    // Component initialization
+    // Update SEO for about page
+    this.seoService.updateAboutPage();
   }
 
   missionPoints = [
@@ -502,37 +504,14 @@ export class AboutComponent implements OnInit {
     },
   ];
 
-  teamMembers = [
-    {
-      name: 'Siva Reddy',
-      position: 'Founder & CEO',
-      bio: 'Visionary leader with 8+ years in tech industry, passionate about digital transformation and startup growth.',
-      image: 'assets/logo.png',
-      icon: 'fas fa-crown',
-      skills: ['Strategy', 'Leadership', 'Innovation'],
-    },
-    {
-      name: 'Mallikarjuna Reddy',
-      position: 'Chief Technology Officer',
-      bio: 'Tech innovator specializing in scalable architectures, cloud solutions, and emerging technologies.',
-      image: 'assets/logo.png',
-      icon: 'fas fa-code',
-      skills: ['Architecture', 'Cloud', 'AI/ML'],
-    },
-    {
-      name: 'Vinod Kumar',
-      position: 'Head of Operations',
-      bio: 'Operations expert ensuring seamless project delivery, client satisfaction, and business growth.',
-      image: 'assets/logo.png',
-      icon: 'fas fa-cogs',
-      skills: ['Operations', 'Quality', 'Process'],
-    },
-  ];
+  companyInfo = COMPANY_INFO;
+  companyStats = COMPANY_STATS;
+  teamMembers = TEAM_MEMBERS;
 
-  companyStats = [
+  statsDisplay = [
     {
       icon: 'fas fa-project-diagram',
-      value: '3+',
+      value: COMPANY_STATS.projectsDelivered,
       label: 'Projects Completed',
       description: 'Successfully delivered across industries',
       color: '#6366f1',
@@ -540,23 +519,15 @@ export class AboutComponent implements OnInit {
     },
     {
       icon: 'fas fa-users',
-      value: '3+',
+      value: COMPANY_STATS.clientsSatisfied,
       label: 'Happy Clients',
       description: 'Satisfied customers worldwide',
       color: '#8b5cf6',
       colorSecondary: '#06b6d4',
     },
-    // {
-    //   icon: 'fas fa-award',
-    //   value: '15+',
-    //   label: 'Awards Won',
-    //   description: 'Industry recognition and accolades',
-    //   color: '#06b6d4',
-    //   colorSecondary: '#10b981',
-    // },
     {
       icon: 'fas fa-clock',
-      value: '24/7',
+      value: COMPANY_STATS.support,
       label: 'Support Available',
       description: 'Round-the-clock assistance',
       color: '#10b981',
@@ -564,47 +535,5 @@ export class AboutComponent implements OnInit {
     },
   ];
 
-  awards = [
-    {
-      title: 'Emerging Startup Recognition',
-      organization: 'Hyderabad Tech Hub',
-      year: '2025',
-      description:
-        'Recognized as a promising new startup in the Hyderabad tech ecosystem.',
-    },
-    {
-      title: 'Quality Delivery Excellence',
-      organization: 'Client Testimonials',
-      year: '2025',
-      description:
-        'Acknowledged for delivering high-quality projects within timeline and budget.',
-    },
-    {
-      title: 'E-commerce Innovation',
-      organization: 'Product Development',
-      year: '2025',
-      description:
-        'Currently developing innovative e-commerce solutions for modern businesses.',
-    },
-    {
-      title: 'Client Choice Award',
-      organization: 'Customer Feedback',
-      year: '2025',
-      description: '100% client satisfaction rate in our completed projects.',
-    },
-    {
-      title: 'Rapid Growth Potential',
-      organization: 'Industry Analysis',
-      year: '2025',
-      description:
-        'Identified as a high-potential startup with innovative approach to technology.',
-    },
-    {
-      title: 'Future Tech Leaders',
-      organization: 'Startup Community',
-      year: '2025',
-      description:
-        'Recognized for fresh perspective and modern approach to software development.',
-    },
-  ];
+  awards = AWARDS.slice(1); // Skip the first award (Best Startup IT Company) to show other awards
 }

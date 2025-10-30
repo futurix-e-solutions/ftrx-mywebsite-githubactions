@@ -1,0 +1,582 @@
+/**
+ * Responsive Design Utilities
+ * Mobile-first responsive design utilities for FTRX Soft Solutions website
+ */
+
+/* ==========================================================================
+   Breakpoints (Bootstrap 5 Compatible)
+   ========================================================================== */
+/*
+  xs: 0 - 575px (Extra small devices - phones)
+  sm: 576px - 767px (Small devices - phones landscape)
+  md: 768px - 991px (Medium devices - tablets)
+  lg: 992px - 1199px (Large devices - desktops)
+  xl: 1200px - 1399px (Extra large devices - large desktops)
+  xxl: 1400px+ (Extra extra large devices - larger desktops)
+*/
+
+/* ==========================================================================
+   Base Responsive Utilities
+   ========================================================================== */
+
+/* Ensure images are responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure videos are responsive */
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure iframes are responsive (for maps, videos, etc.) */
+iframe {
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Typography Responsive Adjustments
+   ========================================================================== */
+
+/* Base font size adjustments for better mobile readability */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
+
+  .display-1 {
+    font-size: 2.5rem !important;
+  }
+
+  .display-2 {
+    font-size: 2.25rem !important;
+  }
+
+  .display-3 {
+    font-size: 2rem !important;
+  }
+
+  .display-4 {
+    font-size: 1.75rem !important;
+  }
+
+  .display-5 {
+    font-size: 1.5rem !important;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.75rem !important;
+  }
+
+  h3 {
+    font-size: 1.5rem !important;
+  }
+
+  .lead {
+    font-size: 1.125rem !important;
+  }
+}
+
+/* ==========================================================================
+   Spacing Adjustments for Mobile
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* Reduce section padding on mobile */
+  section.py-5,
+  .section-lg {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Adjust container padding */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Reduce card padding on mobile */
+  .card-body {
+    padding: 1rem !important;
+  }
+}
+
+/* ==========================================================================
+   Button Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 575px) {
+  /* Make buttons full width on extra small screens */
+  .btn-responsive-full {
+    width: 100%;
+    display: block;
+  }
+
+  /* Adjust button sizes */
+  .btn-xl {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1rem !important;
+  }
+
+  .btn-lg {
+    padding: 0.625rem 1.25rem !important;
+    font-size: 0.9375rem !important;
+  }
+}
+
+/* ==========================================================================
+   Navigation Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  /* Navbar adjustments */
+  .navbar-nav {
+    padding-top: 1rem;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0.5rem 0;
+  }
+
+  .navbar-nav .btn {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Hero Section Responsive
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  .hero-section {
+    padding-top: 4rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .hero-section .row {
+    flex-direction: column-reverse;
+  }
+
+  .hero-section .col-lg-6:last-child {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section h1 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+
+  .hero-section .lead {
+    font-size: 1rem !important;
+  }
+
+  .hero-section img {
+    max-height: 300px;
+    object-fit: cover;
+  }
+}
+
+/* ==========================================================================
+   Card Grid Responsive
+   ========================================================================== */
+
+@media (max-width: 575px) {
+  /* Stack cards vertically on mobile */
+  .row .col-lg-4,
+  .row .col-lg-3,
+  .row .col-md-6 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   Table Responsive
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    font-size: 0.875rem;
+  }
+}
+
+/* ==========================================================================
+   Form Responsive
+   ========================================================================== */
+
+@media (max-width: 575px) {
+  .form-control,
+  .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .form-label {
+    font-size: 0.9375rem;
+  }
+}
+
+/* ==========================================================================
+   Modal Responsive
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+
+  .modal-content {
+    border-radius: 0.5rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Footer Responsive
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  footer .col-lg-4,
+  footer .col-lg-3,
+  footer .col-lg-2,
+  footer .col-md-6 {
+    margin-bottom: 2rem;
+  }
+
+  footer .text-md-end {
+    text-align: center !important;
+  }
+
+  footer .row > div:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   Floating Buttons Responsive
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .floating-buttons {
+    bottom: 20px !important;
+    right: 15px !important;
+    z-index: 1050;
+  }
+
+  .floating-buttons .btn {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .floating-buttons .btn i {
+    font-size: 1.125rem !important;
+  }
+}
+
+/* ==========================================================================
+   Stats/Counter Responsive
+   ========================================================================== */
+
+@media (max-width: 575px) {
+  .stat-number {
+    font-size: 2rem !important;
+  }
+
+  .stat-number + p {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* ==========================================================================
+   Icon Box Responsive
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .icon-box {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 1.25rem !important;
+  }
+
+  .icon-box-outline {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* ==========================================================================
+   Page Header Responsive
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .page-header {
+    padding-top: 5rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .page-header h1 {
+    font-size: 2rem !important;
+  }
+
+  .page-header .lead {
+    font-size: 1rem !important;
+  }
+}
+
+/* ==========================================================================
+   Portfolio/Gallery Responsive
+   ========================================================================== */
+
+@media (max-width: 575px) {
+  .portfolio-item,
+  .gallery-item {
+    margin-bottom: 1rem;
+  }
+
+  .portfolio-item img,
+  .gallery-item img {
+    height: auto !important;
+    min-height: 200px;
+  }
+}
+
+/* ==========================================================================
+   Testimonial Responsive
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  .testimonial-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .testimonial-card blockquote {
+    font-size: 0.9375rem !important;
+  }
+
+  .testimonial-card img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+/* ==========================================================================
+   CTA Section Responsive
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .section-lg.bg-gradient-primary .d-flex {
+    flex-direction: column;
+  }
+
+  .section-lg.bg-gradient-primary .btn {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-lg.bg-gradient-primary .btn:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   Touch-Friendly Targets
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* Ensure touch targets are at least 44x44px */
+  .btn,
+  .nav-link,
+  a.card,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+  }
+
+  .form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+  }
+}
+
+/* ==========================================================================
+   Animations on Mobile (Reduce Motion)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .no-print,
+  .navbar,
+  .floating-buttons,
+  .btn,
+  footer {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Hide on mobile */
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile */
+.show-mobile {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .show-mobile {
+    display: block !important;
+  }
+}
+
+/* Text alignment responsive utilities */
+@media (max-width: 767px) {
+  .text-md-center {
+    text-align: center !important;
+  }
+
+  .text-md-left {
+    text-align: left !important;
+  }
+
+  .text-md-right {
+    text-align: right !important;
+  }
+}
+
+/* Flex direction responsive utilities */
+@media (max-width: 767px) {
+  .flex-md-column {
+    flex-direction: column !important;
+  }
+
+  .flex-md-row {
+    flex-direction: row !important;
+  }
+}
+
+/* ==========================================================================
+   Accessibility Improvements
+   ========================================================================== */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1rem;
+  background-color: #6366f1;
+  color: white;
+  text-decoration: none;
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1rem;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ==========================================================================
+   Performance Optimizations
+   ========================================================================== */
+
+/* Use hardware acceleration for transforms and animations */
+.animate-fade-in-up,
+.animate-fade-in-left,
+.animate-fade-in-right,
+.animate-scale-in,
+.card:hover,
+.btn:hover {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize font loading */
+@media (prefers-reduced-data: reduce) {
+  * {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  }
+}

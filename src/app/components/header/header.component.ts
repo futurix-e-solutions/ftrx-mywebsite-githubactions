@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { COMPANY_INFO } from '../../constants/company.constants';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,10 @@ import { RouterModule } from '@angular/router';
   template: `
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
       <div class="container">
-        <a href="https://ftrxsoftsolutions.in/home" class="navbar-brand fw-bold text-primary">
-          <img src="assets/logo-ftrx.png" 
-               alt="FTRX Logo" class="ml-2" style="width: 60px; height: 40px">
-        
+        <a [href]="companyInfo.website + '/home'" class="navbar-brand fw-bold text-primary">
+          <img [src]="companyInfo.logo.ftrx"
+               [alt]="companyInfo.name + ' Logo'" class="ml-2" style="width: 60px; height: 40px">
+
         </a>
         
         <button class="navbar-toggler border-0 shadow-none" type="button" 
@@ -90,6 +91,7 @@ import { RouterModule } from '@angular/router';
   `]
 })
 export class HeaderComponent {
+  companyInfo = COMPANY_INFO;
   isMobileMenuOpen = false;
 
   toggleMobile() {

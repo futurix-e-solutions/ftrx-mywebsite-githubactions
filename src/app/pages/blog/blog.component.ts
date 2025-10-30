@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-blog',
@@ -222,7 +223,14 @@ import { RouterModule } from '@angular/router';
     `,
   ],
 })
-export class BlogComponent {
+export class BlogComponent implements OnInit {
+  constructor(private seoService: SeoService) {}
+
+  ngOnInit() {
+    // Update SEO for blog page
+    this.seoService.updateBlogPage();
+  }
+
   featuredPost = {
     title: 'The Future of Web Development: Trends to Watch in 2025',
     excerpt:

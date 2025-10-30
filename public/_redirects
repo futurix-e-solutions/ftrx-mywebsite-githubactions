@@ -1,0 +1,13 @@
+# Netlify Redirects Configuration
+# This file handles client-side routing for Angular Single Page Application
+
+# SPA fallback - all routes should serve index.html
+/*    /index.html   200
+
+# Optional: Redirect old URLs to new ones (examples)
+# /old-page    /new-page    301
+# /blog/*      /articles/:splat    301
+
+# Optional: External redirects (examples)
+# /github      https://github.com/ftrxsoftsolutions    302
+# /facebook    https://www.facebook.com/ftrxsoftsolutions    302

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-services',
@@ -199,7 +200,14 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
+  constructor(private seoService: SeoService) {}
+
+  ngOnInit() {
+    // Update SEO for services page
+    this.seoService.updateServicesPage();
+  }
+
   services = [
     {
       icon: 'fas fa-code',
