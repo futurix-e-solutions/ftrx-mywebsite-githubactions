@@ -1,18 +1,18 @@
 {
-  "name": "my-website",
+  "name": "lifovia-homecare",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:ssr": "ng build --configuration production && ng run my-website:server:production",
-    "serve:ssr": "node dist/my-website/server/server.mjs"
+    "serve:ssr:lifovia-homecare": "node dist/lifovia-homecare/server/server.mjs"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.0",
+    "@angular/cdk": "^18.2.0",
     "@angular/common": "^18.2.0",
     "@angular/compiler": "^18.2.0",
     "@angular/core": "^18.2.0",
@@ -22,16 +22,20 @@
     "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.20",
-    "aos": "^2.3.4",
+    "@netlify/angular-runtime": "^3.0.1",
+    "bootstrap": "^5.3.8",
     "express": "^4.18.2",
+    "primeflex": "^4.0.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^17.18.0",
     "rxjs": "~7.8.0",
+    "tailwindcss-primeui": "^0.6.1",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.10",
-    "@angular/cli": "^18.2.20"
+    "zone.js": "~0.14.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.20",
-    "@angular/cli": "^18.2.21",
+    "@angular/cli": "^18.2.20",
     "@angular/compiler-cli": "^18.2.0",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
